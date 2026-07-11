@@ -1,0 +1,71 @@
+.testimonial-carousel {
+  position: relative;
+  max-width: 680px;
+  margin-inline: auto;
+  text-align: center;
+  padding: var(--space-xl) var(--space-md);
+}
+
+.testimonial-quote-icon {
+  font-size: var(--fs-xl);
+  color: var(--accent-gold-dim);
+  margin-bottom: var(--space-md);
+}
+
+.testimonial-quote p {
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+.testimonial-quote footer {
+  margin-top: var(--space-md);
+  display: flex;
+  flex-direction: column;
+}
+
+.testimonial-name {
+  font-weight: 600;
+  color: var(--accent-gold);
+}
+
+.testimonial-role {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+}
+
+.testimonial-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
+  color: var(--text-secondary);
+}
+
+.testimonial-controls > button {
+  font-size: var(--fs-md);
+  transition: color var(--transition-base);
+}
+
+.testimonial-controls > button:hover {
+  color: var(--accent-gold);
+}
+
+.testimonial-dots {
+  display: flex;
+  gap: var(--space-xs);
+}
+
+.testimonial-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--border-subtle);
+  transition: background-color var(--transition-base);
+}
+
+.testimonial-dot.active {
+  background-color: var(--accent-gold);
+}

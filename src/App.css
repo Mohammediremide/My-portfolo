@@ -1,0 +1,113 @@
+/* ============================================================
+   App.css
+   ------------------------------------------------------------
+   Layout-level rules that apply across sections — not the
+   tokens themselves (those live in index.css), but the shared
+   rhythm that every <section> follows: vertical spacing,
+   the "eyebrow + heading" header pattern, and section-level
+   typography. Each component's own CSS file only contains
+   styles specific to that component.
+   ============================================================ */
+
+main {
+  display: block;
+  position: relative;
+}
+
+/* Every content section shares this base padding so vertical
+   rhythm down the page stays consistent regardless of how much
+   content a given section holds. */
+section {
+  padding-block: var(--space-2xl);
+  position: relative;
+}
+
+/* The small uppercase mono label that precedes most section
+   headings (e.g. "002 / SKILLS"), tying back to the build-log /
+   terminal motif established in the Hero. */
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  margin-bottom: var(--space-sm);
+}
+
+.section-heading {
+  font-size: var(--fs-2xl);
+  font-weight: 600;
+  color: var(--text-primary);
+  max-width: 640px;
+}
+
+.section-subheading {
+  font-size: var(--fs-md);
+  color: var(--text-secondary);
+  max-width: 560px;
+  margin-top: var(--space-sm);
+}
+
+.section-header {
+  margin-bottom: var(--space-xl);
+}
+
+/* Generic "gold outline" button used by multiple sections
+   (Hero's secondary CTA, Projects' filter, Contact's submit
+   share this base, then override where needed). */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: 0.85rem 1.6rem;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: transform var(--transition-base), box-shadow var(--transition-base),
+    background-color var(--transition-base), border-color var(--transition-base);
+}
+
+.btn-primary {
+  background-color: var(--accent-gold);
+  color: #0b0d10;
+  border: 1px solid var(--accent-gold);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border-subtle);
+}
+
+.btn-secondary:hover {
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
+  transform: translateY(-2px);
+}
+
+/* Shared glass-panel surface used by cards across the site
+   (Services, Testimonials, Skills) to keep the glassmorphism
+   effect from being redefined five separate times. */
+.glass-panel {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+@media (max-width: 768px) {
+  section {
+    padding-block: var(--space-xl);
+  }
+}

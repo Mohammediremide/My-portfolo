@@ -1,0 +1,25 @@
+.back-to-top {
+  position: fixed;
+  bottom: var(--space-lg);
+  right: var(--space-lg);
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: var(--accent-gold);
+  color: #0b0d10;
+  font-size: var(--fs-md);
+  box-shadow: var(--shadow-card);
+  z-index: 900;
+}
+
+@media (max-width: 640px) {
+  .back-to-top {
+    bottom: var(--space-md);
+    right: var(--space-md);
+    width: 40px;
+    height: 40px;
+  }
+}

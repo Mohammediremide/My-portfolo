@@ -1,0 +1,44 @@
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+}
+
+.service-card {
+  padding: var(--space-lg);
+  transition: border-color var(--transition-base), transform var(--transition-base);
+}
+
+.service-card:hover {
+  border-color: var(--accent-gold);
+  transform: translateY(-4px);
+}
+
+.service-icon {
+  font-size: var(--fs-xl);
+  color: var(--accent-gold);
+  margin-bottom: var(--space-md);
+}
+
+.service-title {
+  font-size: var(--fs-md);
+  font-weight: 600;
+  margin-bottom: var(--space-xs);
+}
+
+.service-description {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+}
+
+@media (max-width: 900px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+}

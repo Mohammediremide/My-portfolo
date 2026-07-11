@@ -1,0 +1,208 @@
+/* ============================================================
+   index.css
+   ------------------------------------------------------------
+   This file is the single source of truth for the visual
+   language of the site: colors, type, spacing, and the CSS
+   reset. Every component reads its colors and fonts from the
+   CSS variables defined here instead of hard-coding values.
+   That's what lets the ThemeToggle component flip the entire
+   site between dark and light mode by changing one attribute
+   on <html>, instead of touching every component.
+   ============================================================ */
+
+/* Import the three type roles used across the site:
+   - Fraunces: the display serif, used sparingly for headlines
+     so it keeps its impact.
+   - Inter: the body sans-serif, optimized for readability at
+     small sizes.
+   - JetBrains Mono: the "code" voice, used for labels, stats,
+     and anything that should read like terminal output (a nod
+     to the build-log motif in the Hero section). */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+/* ------------------------------------------------------------
+   DESIGN TOKENS
+   Defined on :root so they're globally available, and
+   re-defined on [data-theme="light"] so ThemeContext can swap
+   the whole palette by toggling one attribute.
+   ------------------------------------------------------------ */
+:root {
+  /* Dark mode (default) — deep charcoal with a warm gold accent */
+  --bg-primary: #0b0d10;
+  --bg-surface: #15181d;
+  --bg-surface-raised: #1c2026;
+  --border-subtle: #262b33;
+
+  --text-primary: #f2f0ea;
+  --text-secondary: #b8bcc4;
+  --text-muted: #767c87;
+
+  --accent-gold: #d4a94b;
+  --accent-gold-soft: #e8c97a;
+  --accent-gold-dim: rgba(212, 169, 75, 0.14);
+
+  /* Used for success states (EmailJS confirmation, etc.) */
+  --accent-success: #6fbf8b;
+  --accent-error: #e07a6b;
+
+  /* Type scale — a deliberate ratio, not browser defaults */
+  --font-display: 'Fraunces', serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --fs-xs: 0.75rem;
+  --fs-sm: 0.875rem;
+  --fs-base: 1rem;
+  --fs-md: 1.125rem;
+  --fs-lg: 1.5rem;
+  --fs-xl: 2.25rem;
+  --fs-2xl: 3.5rem;
+  --fs-3xl: 5rem;
+
+  /* Spacing scale used for padding/margin/gap throughout */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2.5rem;
+  --space-xl: 4rem;
+  --space-2xl: 6rem;
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+
+  --shadow-glow: 0 0 40px rgba(212, 169, 75, 0.12);
+  --shadow-card: 0 8px 30px rgba(0, 0, 0, 0.35);
+
+  --transition-base: 200ms ease;
+  --transition-slow: 500ms cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Max width for content containers across all sections */
+  --container-width: 1180px;
+}
+
+/* Light mode palette. Same variable names, different values —
+   this is the whole reason every component must reference
+   var(--token) instead of a literal hex code. */
+[data-theme='light'] {
+  --bg-primary: #faf8f3;
+  --bg-surface: #ffffff;
+  --bg-surface-raised: #f1ede3;
+  --border-subtle: #e3ddcd;
+
+  --text-primary: #1a1c1f;
+  --text-secondary: #4a4e57;
+  --text-muted: #82868f;
+
+  --accent-gold: #b8863a;
+  --accent-gold-soft: #d4a94b;
+  --accent-gold-dim: rgba(184, 134, 58, 0.1);
+
+  --shadow-glow: 0 0 40px rgba(184, 134, 58, 0.1);
+  --shadow-card: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* ------------------------------------------------------------
+   RESET
+   A minimal, modern reset — enough to remove browser
+   inconsistencies without fighting the cascade later.
+   ------------------------------------------------------------ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Respect users who've asked the OS to reduce motion. Every
+     animated component should also check this at the JS level
+     via the useReducedMotion hook, but this covers CSS-only
+     transitions like :hover states. */
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  line-height: 1.6;
+  /* Transition the two color tokens so the dark/light toggle
+     fades instead of snapping. */
+  transition: background-color var(--transition-slow), color var(--transition-slow);
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+/* Visible keyboard focus state, kept consistent across every
+   interactive element instead of relying on the browser
+   default outline (which varies and is often suppressed by
+   accident elsewhere in the stylesheet). */
+:focus-visible {
+  outline: 2px solid var(--accent-gold);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* Shared container class used by every section to keep
+   horizontal rhythm consistent site-wide. */
+.container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin-inline: auto;
+  padding-inline: var(--space-md);
+}
+
+@media (max-width: 768px) {
+  :root {
+    --fs-3xl: 3rem;
+    --fs-2xl: 2.25rem;
+    --fs-xl: 1.75rem;
+    --space-2xl: 3.5rem;
+    --space-xl: 2.5rem;
+  }
+}
