@@ -1,4 +1,4 @@
-# Daniel Collins — Developer Portfolio
+# Odewunmi Mohammed — Developer Portfolio
 
 A production React 19 + Vite portfolio built to teach React as much as to
 showcase it. Every component is commented to explain why it exists, why
